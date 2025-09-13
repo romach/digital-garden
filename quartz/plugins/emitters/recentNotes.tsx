@@ -13,7 +13,7 @@ import { i18n } from "../../i18n"
 export const RecentNotesPage: QuartzEmitterPlugin = () => {
   const opts: FullPageLayout = {
     ...sharedPageComponents,
-    pageBody: Component.RecentNotes({title: "", showTags: true }),
+    pageBody: Component.RecentNotes({title: "", showTags: true, limit: undefined }),
     beforeBody: defaultListPageLayout.beforeBody,
     left: defaultListPageLayout.left,
     right: defaultListPageLayout.right,
