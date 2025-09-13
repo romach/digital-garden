@@ -4,6 +4,9 @@ ul.section-ul {
   list-style: none;
   margin-top: 2em;
   padding-left: 0;
+  &.without-margins {
+    margin-top: 0;
+  }
 }
 
 li.section-li {
