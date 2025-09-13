@@ -1,5 +1,6 @@
 ---
 title: How to install Java
+date: 2025-09-13
 ---
 <!-- steps -->
 1. [install SDKMAN!](how-to-install-sdkman)

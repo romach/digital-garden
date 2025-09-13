@@ -1,5 +1,6 @@
 ---
 title: How to install SDKMAN!
+date: 2025-09-13
 ---
 [SDKMAN!](https://sdkman.io/) is a tool for managing parallel versions of multiple Software Development Kits on Unix based systems. It’s useful for installing multiple versions of Java, Maven, Spring Initializer, etc.
 
