@@ -11,6 +11,10 @@ ol.steps {
     margin-bottom: 2rem;
     counter-increment: step-counter;
 
+    p {
+      margin: revert;
+    }
+
     &::before {
       content: counter(step-counter);
       position: absolute;
