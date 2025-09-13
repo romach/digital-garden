@@ -1,3 +1,46 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+ol.steps {
+  counter-reset: step-counter;
+  list-style: none;
+  padding: 0;
+
+  > li {
+    position: relative;
+    padding-left: 4rem;
+    margin-bottom: 2rem;
+    counter-increment: step-counter;
+
+    &::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      border: 1px solid var(--secondary);
+      background-color: var(--light);
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 1.25rem;
+      top: 2.5rem;
+      width: 1px;
+      height: calc(100% + 1rem);
+      background-color: var(--gray);
+    }
+
+    &:last-child::after {
+      display: none;
+    }
+  }
+}
+

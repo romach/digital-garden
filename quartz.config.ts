@@ -1,5 +1,6 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
+import { StepsList } from "./quartz/plugins/transformers/steps-list"
 
 /**
  * Quartz 4 Configuration
@@ -72,6 +73,7 @@ const config: QuartzConfig = {
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
+      StepsList(),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [
