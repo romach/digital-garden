@@ -7,7 +7,7 @@ ol.steps {
 
   > li {
     position: relative;
-    padding-left: 4rem;
+    padding-left: 3rem;
     margin-bottom: 2rem;
     counter-increment: step-counter;
 
@@ -16,8 +16,8 @@ ol.steps {
       position: absolute;
       left: 0;
       top: 0;
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
       border-radius: 50%;
       border: 1px solid var(--secondary);
       background-color: var(--light);
@@ -31,8 +31,8 @@ ol.steps {
     &::after {
       content: '';
       position: absolute;
-      left: 1.25rem;
-      top: 2.5rem;
+      left: 0.75rem;
+      top: 1.5rem;
       width: 1px;
       height: calc(100% + 1rem);
       background-color: var(--gray);
