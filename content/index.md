@@ -6,5 +6,5 @@ date: 2025-09-13
 
 This site has several sections:
 
-- ❓ [[FAQ]] - questions and answers about different technologies. Answers are typically short.
-- 📝 [[Notes]] - longer articles about various technologies.
+- ❓ [FAQ](faq) - questions and answers about different technologies. Answers are typically short.
+- 📝 [Notes](notes) - longer articles about various technologies.
