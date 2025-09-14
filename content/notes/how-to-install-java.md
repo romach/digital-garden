@@ -7,28 +7,32 @@ tags:
 <!-- steps -->
 1. [install SDKMAN!](how-to-install-sdkman)
 
-2. ```bash
-   sdk install java 21.ea.35-open
-   ```
-   Installs Java 21.
+2. Choose Java version [here](https://sdkman.io/jdks/)
 
-3. ```bash
+3. Install chosen Java version
+
+   ```bash
+   sdk install java 24.0.2-tem
+   ```
+
+4. Check Java installation
+   
+   ```bash
    java --version
    ```
-   Check Java installation.
 
 ## Configure a specific Java version for a project
 
 <!-- steps -->
-1. Add `.sdkmanrc` file to the project directory.
+1. Add `.sdkmanrc` file to the project directory
     
-   ```ini
+   ```ini title=".sdkmanrc"
    java=21.ea.35-open
    ```
 
-2. Enable switching SDK versions automatically when you `cd` into a directory
+2. Enable switching SDK versions in SDKMAN! config
 
-   ```ini
+   ```ini title="~/.sdkman/etc/config"
    sdkman_auto_env=true
    ```
 
@@ -40,8 +44,4 @@ tags:
 
    ```bash
    sdk env install
-   ```   
-
-## Links
-
-- [JDK Distributions](https://sdkman.io/jdks) 
+   ```
