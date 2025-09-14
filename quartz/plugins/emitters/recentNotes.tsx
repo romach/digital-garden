@@ -22,49 +22,53 @@ export const RecentNotesPage: QuartzEmitterPlugin = () => {
   const { head: Head, pageBody, footer: Footer } = opts
   const Body = BodyConstructor()
 
+  const buildRender = (ctx: any, content: any, resources: any) => {
+    const cfg = ctx.cfg.configuration
+    const slug = "recent-notes" as FullSlug
+
+    const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`)
+    const path = url.pathname as FullSlug
+    const title = i18n(cfg.locale).components.recentNotes.title
+    const [tree, vfile] = defaultProcessedContent({
+      slug,
+      text: title,
+      description: title,
+      frontmatter: { title, tags: [] },
+    })
+    const externalResources = pageResources(path, resources)
+    const componentData: QuartzComponentProps = {
+      ctx,
+      fileData: vfile.data,
+      externalResources,
+      cfg,
+      children: [],
+      tree,
+      // Only include files with a defined slug to avoid resolveRelative errors
+      // Additionally, ensure each file has a title by falling back to its filename when missing.
+      allFiles: content
+        .map(([_tree, vfile]: any) => vfile.data)
+        .filter((f: any) => f.slug !== undefined)
+        .map((f: any) => {
+          const slug = f.slug as string
+          const fallbackTitle = slug.split("/").pop() ?? ""
+          const fm = f.frontmatter ?? {}
+          if (!fm.title || fm.title.trim() === "") {
+            // Assign a derived title into frontmatter so components relying on it work unchanged
+            f.frontmatter = { ...fm, title: fallbackTitle }
+          }
+          return f
+        }),
+    }
+    return { cfg, slug, externalResources, componentData }
+  }
+
   return {
     name: "RecentNotesPage",
     getQuartzComponents() {
       return [Head, Body, pageBody, Footer]
     },
     async *emit(ctx, content, resources) {
-      const cfg = ctx.cfg.configuration
-      const slug = "recent-notes" as FullSlug
-
-      const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`)
-      const path = url.pathname as FullSlug
-      const title = i18n(cfg.locale).components.recentNotes.title
-      const [tree, vfile] = defaultProcessedContent({
-        slug,
-        text: title,
-        description: title,
-        frontmatter: { title, tags: [] },
-      })
-      const externalResources = pageResources(path, resources)
-      const componentData: QuartzComponentProps = {
-        ctx,
-        fileData: vfile.data,
-        externalResources,
-        cfg,
-        children: [],
-        tree,
-        // Only include files with a defined slug to avoid resolveRelative errors
-        // Additionally, ensure each file has a title by falling back to its filename when missing.
-        allFiles: content
-          .map(([_tree, vfile]) => vfile.data)
-          .filter((f) => f.slug !== undefined)
-          .map((f) => {
-            const slug = f.slug as string
-            const fallbackTitle = slug.split("/").pop() ?? ""
-            const fm = f.frontmatter ?? {}
-            if (!fm.title || fm.title.trim() === "") {
-              // Assign a derived title into frontmatter so components relying on it work unchanged
-              f.frontmatter = { ...fm, title: fallbackTitle }
-            }
-            return f
-          }),
-      }
-
+      const { cfg, slug, externalResources, componentData } = buildRender(ctx, content, resources)
       yield write({
         ctx,
         content: renderPage(cfg, slug, componentData, opts, externalResources),
@@ -72,6 +76,14 @@ export const RecentNotesPage: QuartzEmitterPlugin = () => {
         ext: ".html",
       })
     },
-    async *partialEmit() {},
+    async *partialEmit(ctx, content, resources, _changeEvents) {
+      const { cfg, slug, externalResources, componentData } = buildRender(ctx, content, resources)
+      yield write({
+        ctx,
+        content: renderPage(cfg, slug, componentData, opts, externalResources),
+        slug,
+        ext: ".html",
+      })
+    },
   }
 }
