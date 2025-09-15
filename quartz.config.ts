@@ -13,11 +13,10 @@ const config: QuartzConfig = {
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
-    analytics: {
+    analytics: process.env.NODE_ENV === 'production' ? {
       provider: "umami",
-      host: "digital-garden.romach007.com",
       websiteId: "8ac31401-53e0-426a-9953-cfbcb6edfe88",
-    },
+    } : null,
     locale: "en-US",
     baseUrl: "digital-garden.romach007.com",
     ignorePatterns: ["private", "templates", ".obsidian"],
