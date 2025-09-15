@@ -33,7 +33,7 @@ export const RecentChangesPage: QuartzEmitterPlugin = () => {
       slug,
       text: title,
       description: title,
-      frontmatter: { title, tags: [] },
+      frontmatter: { title, tags: [], comments: false },
     })
     const externalResources = pageResources(path, resources)
     const componentData: QuartzComponentProps = {
