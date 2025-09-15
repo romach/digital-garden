@@ -1,6 +1,5 @@
 ---
 title: How to install Java
-date: 2025-09-13
 tags:
    - java
 ---

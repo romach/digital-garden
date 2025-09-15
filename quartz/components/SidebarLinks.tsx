@@ -8,7 +8,7 @@ const SidebarLinks: QuartzComponent = ({}: QuartzComponentProps) => {
         <li class="section-li">
           <div class="section">
             <div class="desc">
-              <a href="/recent-notes" data-no-popover="true">Recent Notes</a>
+              <a href="/recent-changes" data-no-popover="true">Recent Changes</a>
             </div>
           </div>
         </li>

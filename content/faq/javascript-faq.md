@@ -1,6 +1,5 @@
 ---
 title: JavaScript FAQ
-date: 2025-09-15
 tags:
     - javascript
     - faq

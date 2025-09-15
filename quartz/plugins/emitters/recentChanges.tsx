@@ -10,7 +10,7 @@ import { defaultProcessedContent } from "../vfile"
 import { write } from "./helpers"
 import { i18n } from "../../i18n"
 
-export const RecentNotesPage: QuartzEmitterPlugin = () => {
+export const RecentChangesPage: QuartzEmitterPlugin = () => {
   const opts: FullPageLayout = {
     ...sharedPageComponents,
     pageBody: Component.RecentNotes({title: "", showTags: true, limit: undefined }),
@@ -24,11 +24,11 @@ export const RecentNotesPage: QuartzEmitterPlugin = () => {
 
   const buildRender = (ctx: any, content: any, resources: any) => {
     const cfg = ctx.cfg.configuration
-    const slug = "recent-notes" as FullSlug
+    const slug = "recent-changes" as FullSlug
 
     const url = new URL(`https://${cfg.baseUrl ?? "example.com"}`)
     const path = url.pathname as FullSlug
-    const title = i18n(cfg.locale).components.recentNotes.title
+    const title = "Recent Changes"
     const [tree, vfile] = defaultProcessedContent({
       slug,
       text: title,
@@ -63,7 +63,7 @@ export const RecentNotesPage: QuartzEmitterPlugin = () => {
   }
 
   return {
-    name: "RecentNotesPage",
+    name: "RecentChangesPage",
     getQuartzComponents() {
       return [Head, Body, pageBody, Footer]
     },
