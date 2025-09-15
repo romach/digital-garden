@@ -4,18 +4,18 @@ tags:
    - java
 ---
 <!-- steps -->
-1. [install SDKMAN!](how-to-install-sdkman)
+1. [Install SDKMAN!](how-to-install-sdkman)
 
 2. Choose Java version [here](https://sdkman.io/jdks/)
 
-3. Install chosen Java version
+3. Install the chosen Java version
 
    ```bash
    sdk install java 24.0.2-tem
    ```
 
 4. Check Java installation
-   
+
    ```bash
    java --version
    ```
@@ -23,8 +23,8 @@ tags:
 ## Configure a specific Java version for a project
 
 <!-- steps -->
-1. Add `.sdkmanrc` file to the project directory
-    
+1. Add a `.sdkmanrc` file to the project directory
+
    ```ini title=".sdkmanrc"
    java=21.ea.35-open
    ```
@@ -37,7 +37,7 @@ tags:
 
 3. After setting up the `.sdkmanrc` files, SDKMAN! will automatically switch to the required Java version when you `cd` into the project directories.
 
-   If specified Java version is not installed, SDKMAN! will prompt you to install it.
+   If the specified Java version is not installed, SDKMAN! will prompt you to install it.
 
    Run to install it:
 

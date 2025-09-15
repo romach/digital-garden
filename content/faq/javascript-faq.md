@@ -18,7 +18,7 @@ const fullName = firstName + ' ' + lastName; // John Doe
 
 ### When to use?
 
-When you need to concatenate strings
+When you need to concatenate strings.
 
 ## How to inject JavaScript into HTML?
 
@@ -44,8 +44,8 @@ document.createElement('div');
 element.textContent = 'Hello, world!';
 // append element to the body
 document.body.append(element);
-// get element by id?
+// get element by ID
 document.getElementById('myElement');
-// specify the element’s class?
+// specify the element's class
 element.className = 'my-class';
 ```
