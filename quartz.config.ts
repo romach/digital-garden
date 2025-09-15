@@ -7,13 +7,15 @@ import { StepsList } from "./quartz/plugins/transformers/steps-list"
  *
  * See https://quartz.jzhao.xyz/configuration for more information.
  */
+const enableAnalytics = process.env.ENABLE_ANALYTICS === 'true'
+console.log('Analytics enabled:', enableAnalytics) // Debug log
 const config: QuartzConfig = {
   configuration: {
     pageTitle: "Digital Garden",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
-    analytics: process.env.NODE_ENV === 'production' ? {
+    analytics: enableAnalytics ? {
       provider: "umami",
       websiteId: "8ac31401-53e0-426a-9953-cfbcb6edfe88",
     } : null,
