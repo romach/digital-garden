@@ -14,7 +14,9 @@ const config: QuartzConfig = {
     enableSPA: true,
     enablePopovers: true,
     analytics: {
-      provider: "plausible",
+      provider: "umami",
+      host: "digital-garden.romach007.com",
+      websiteId: "8ac31401-53e0-426a-9953-cfbcb6edfe88",
     },
     locale: "en-US",
     baseUrl: "digital-garden.romach007.com",
