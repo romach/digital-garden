@@ -5,5 +5,5 @@ title: Welcome
 
 This site has several sections:
 
-- ❓ [[FAQ]] - questions and answers about different technologies. Answers are typically short.
-- 📝 [[Notes]] - longer articles about various technologies.
+- ❓ [[faq|FAQ]] - questions and answers about different technologies. Answers are typically short.
+- 📝 [[notes|Notes]] - longer articles about various technologies.
