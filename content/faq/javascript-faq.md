@@ -48,4 +48,12 @@ document.body.append(element);
 document.getElementById('myElement');
 // specify the element's class
 element.className = 'my-class';
+// check user presence on the page
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    // action on user leaves the page
+  } else {
+    // action on user returns to the page
+  }
+});
 ```
