@@ -5,3 +5,9 @@ Hello, my name is Roman Cherepanov. This is a repository for my [digital garden]
 I write mostly about Java, Spring Boot, JavaScript, React, and React Native (Expo).
 
 I use [Quartz](https://quartz.jzhao.xyz/) for building a static site.
+
+## Run locally
+
+```bash
+npx quartz build --serve
+```
