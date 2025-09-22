@@ -48,7 +48,11 @@ document.body.append(element);
 document.getElementById('myElement');
 // specify the element's class
 element.className = 'my-class';
-// check user presence on the page
+```
+
+## How to track user presence on the page?
+
+```js
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
     // action on user leaves the page
@@ -56,4 +60,31 @@ document.addEventListener("visibilitychange", () => {
     // action on user returns to the page
   }
 });
+```
+
+## How to scroll element to user's view?
+
+```js
+const element = document.getElementById("box");
+element.scrollIntoView();
+```
+
+## How to count using `console` object?
+
+```js
+console.count("label");
+```
+
+## How to execute some action after animation is finished?
+
+```js
+Promise.all(
+  elem.getAnimations({ subtree: true }).map((animation) => animation.finished),
+).then(() => elem.remove());
+```
+
+## How to set the focus on the element?
+
+```js
+document.getElementById("myTextField").focus();
 ```
