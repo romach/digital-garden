@@ -1,0 +1,39 @@
+---
+title: Backend Checklist
+---
+
+- use **Tag System**
+- use **Spring Boot**
+- use **MapStruct** for bean mapping
+- use **Swagger**
+- use **Lombok**
+- REST
+    - configure **CORS**
+    - use **Spring MVC HandlerInterceptor**
+    - use **Jakarta Bean Validation**
+    - use **@JsonView**
+    - use **@RestControllerAdvice** with **@ExceptionHandler**
+- Persisting
+    - use **Spring Data JDBC**
+    - use custom **Id generator**
+    - use **Liquibase**
+    - use **PostgreSQL**
+    - use **Testcontainers**
+    - use **Database Rider**
+- Tests
+    - use **JUnit**
+    - use **Parametrized test**
+    - context test
+        - real Spring Boot application
+        - ignore DB layer
+    - for REST layer
+        - use integration tests
+            - real Spring Boot application
+            - **Testcontainers**
+            - **Database Rider**
+    - for service layer
+        - use **@Mock** for repositories
+    - for repositories
+        - use **@DataJdbcTest**
+        - use **Testcontainers**
+        - use **Database Rider**
