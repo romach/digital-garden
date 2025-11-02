@@ -74,11 +74,30 @@ export const PlantUML_SSR: QuartzTransformerPlugin<PlantUmlSsrOptions> = (user) 
                 }
 
                 if (opts.inlineSvg) {
+                  // Make inline SVG responsive to parent container width
+                  const responsiveSvg = (() => {
+                    const addResponsive = (input: string) => input.replace(/<svg\b([^>]*)>/i, (m, attrs) => {
+                      let a = attrs
+                        .replace(/\swidth=\"[^\"]*\"/i, "")
+                        .replace(/\sheight=\"[^\"]*\"/i, "")
+                      if (/style=\"/i.test(a)) {
+                        a = a.replace(/style=\"([^\"]*)\"/i, 'style="$1;max-width:100%;height:auto"')
+                      } else {
+                        a += ' style="max-width:100%;height:auto"'
+                      }
+                      if (!/preserveAspectRatio=/i.test(a)) {
+                        a += ' preserveAspectRatio="xMidYMid meet"'
+                      }
+                      return `<svg${a}>`
+                    })
+                    return addResponsive(svgText)
+                  })()
+
                   // Replace code block with raw HTML containing the SVG
                   // @ts-ignore
                   node.type = "html"
                   // @ts-ignore
-                  node.value = svgText
+                  node.value = responsiveSvg
                   // cleanup properties remark might expect
                   // @ts-ignore
                   delete (node as any).lang
@@ -95,7 +114,7 @@ export const PlantUML_SSR: QuartzTransformerPlugin<PlantUmlSsrOptions> = (user) 
                   // @ts-ignore
                   node.type = "html"
                   // @ts-ignore
-                  node.value = `<img class=\"plantuml\" src=\"${relSrc}\" alt=\"PlantUML diagram\" />`
+                  node.value = `<img class=\"plantuml\" src=\"${relSrc}\" alt=\"PlantUML diagram\" style=\"max-width:100%;height:auto\" />`
                 }
               } else {
                 let pngBuf: Buffer
@@ -115,7 +134,7 @@ export const PlantUML_SSR: QuartzTransformerPlugin<PlantUmlSsrOptions> = (user) 
                 // @ts-ignore
                 node.type = "html"
                 // @ts-ignore
-                node.value = `<img class=\"plantuml\" src=\"${relSrc}\" alt=\"PlantUML diagram\" />`
+                node.value = `<img class=\"plantuml\" src=\"${relSrc}\" alt=\"PlantUML diagram\" style=\"max-width:100%;height:auto\" />`
               }
             } catch (e) {
               // leave original code block in place and annotate error
