@@ -58,3 +58,31 @@ left to right direction
 [First component] ..> [Another component]
 @enduml
 ```
+
+## Table inside note
+```plantuml
+@startuml
+!pragma teoz true
+
+component "User Service" as US
+
+note right of US
+|= Property |= Value |
+| Port | 8080 |
+| Version | 1.3.2 |
+end note
+@enduml
+```
+```
+@startuml
+!pragma teoz true
+
+component "User Service" as US
+
+note right of US
+|= Property |= Value |
+| Port | 8080 |
+| Version | 1.3.2 |
+end note
+@enduml
+```

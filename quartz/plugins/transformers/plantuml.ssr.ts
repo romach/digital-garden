@@ -93,11 +93,20 @@ export const PlantUML_SSR: QuartzTransformerPlugin<PlantUmlSsrOptions> = (user) 
                     return addResponsive(svgText)
                   })()
 
-                  // Replace code block with raw HTML containing the SVG
+                  // Ensure an asset exists for opening in a new tab
+                  const assetPath = path.join(opts.assetDir, `${hash}.svg`)
+                  const relSrc = `/assets/plantuml/${hash}.svg`
+                  try {
+                    await fs.access(assetPath)
+                  } catch {
+                    await fs.writeFile(assetPath, svgText, "utf8")
+                  }
+
+                  // Replace code block with raw HTML containing a link-wrapped inline SVG
                   // @ts-ignore
                   node.type = "html"
                   // @ts-ignore
-                  node.value = responsiveSvg
+                  node.value = `<a href="${relSrc}" target="_blank" rel="noopener noreferrer" data-no-popover="true" class="plantuml-link" style="all:unset;cursor:pointer;display:inline-block">${responsiveSvg}</a>`
                   // cleanup properties remark might expect
                   // @ts-ignore
                   delete (node as any).lang
@@ -114,7 +123,7 @@ export const PlantUML_SSR: QuartzTransformerPlugin<PlantUmlSsrOptions> = (user) 
                   // @ts-ignore
                   node.type = "html"
                   // @ts-ignore
-                  node.value = `<img class=\"plantuml\" src=\"${relSrc}\" alt=\"PlantUML diagram\" style=\"max-width:100%;height:auto\" />`
+                  node.value = `<a href=\"${relSrc}\" target=\"_blank\" rel=\"noopener noreferrer\" data-no-popover=\"true\" class=\"plantuml-link\" style=\"all:unset;cursor:pointer;display:inline-block\"><img class=\"plantuml\" src=\"${relSrc}\" alt=\"PlantUML diagram\" style=\"max-width:100%;height:auto;cursor:pointer\" /></a>`
                 }
               } else {
                 let pngBuf: Buffer
@@ -134,7 +143,7 @@ export const PlantUML_SSR: QuartzTransformerPlugin<PlantUmlSsrOptions> = (user) 
                 // @ts-ignore
                 node.type = "html"
                 // @ts-ignore
-                node.value = `<img class=\"plantuml\" src=\"${relSrc}\" alt=\"PlantUML diagram\" style=\"max-width:100%;height:auto\" />`
+                node.value = `<a href=\"${relSrc}\" target=\"_blank\" rel=\"noopener noreferrer\" data-no-popover=\"true\" class=\"plantuml-link\" style=\"all:unset;cursor:pointer;display:inline-block\"><img class=\"plantuml\" src=\"${relSrc}\" alt=\"PlantUML diagram\" style=\"max-width:100%;height:auto;cursor:pointer\" /></a>`
               }
             } catch (e) {
               // leave original code block in place and annotate error
