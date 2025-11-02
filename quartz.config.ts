@@ -63,6 +63,8 @@ const config: QuartzConfig = {
       Plugin.CreatedModifiedDate({
         priority: ["git", "frontmatter", "filesystem"],
       }),
+      // Render PlantUML diagrams at build time before syntax highlighting
+      Plugin.PlantUML_SSR({ inlineSvg: true, format: "svg" }),
       Plugin.SyntaxHighlighting({
         theme: {
           light: "github-light",
@@ -72,7 +74,6 @@ const config: QuartzConfig = {
       }),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
-      Plugin.PlantUML(),
       Plugin.TableOfContents(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
