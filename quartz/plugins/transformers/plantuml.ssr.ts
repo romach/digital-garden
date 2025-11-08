@@ -76,7 +76,7 @@ export const PlantUML_SSR: QuartzTransformerPlugin<PlantUmlSsrOptions> = (user) 
                 if (opts.inlineSvg) {
                   // Make inline SVG responsive to parent container width
                   const responsiveSvg = (() => {
-                    const addResponsive = (input: string) => input.replace(/<svg\b([^>]*)>/i, (m, attrs) => {
+                    const addResponsive = (input: string) => input.replace(/<svg\b([^>]*)>/i, (_m, attrs) => {
                       let a = attrs
                         .replace(/\swidth=\"[^\"]*\"/i, "")
                         .replace(/\sheight=\"[^\"]*\"/i, "")
