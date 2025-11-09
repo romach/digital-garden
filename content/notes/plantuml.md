@@ -86,3 +86,37 @@ note right of US
 end note
 @enduml
 ```
+
+## Custom block color
+
+```plantuml
+@startuml
+skinparam component {
+  BackgroundColor<<inprogress>> yellow
+}
+[First component] <<inprogress>>
+@enduml
+```
+```
+@startuml
+skinparam component {
+  BackgroundColor<<inprogress>> yellow
+}
+[First component] <<inprogress>>
+@enduml
+```
+
+## Hide stereotype
+
+```plantuml
+@startuml
+hide stereotype
+[First component] <<inprogress>>
+@enduml
+```
+```
+@startuml
+hide stereotype
+[First component] <<inprogress>>
+@enduml
+```
