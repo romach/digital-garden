@@ -5,6 +5,21 @@ tags:
     - docker
 ---
 
+## How to run Postgres in Docker container?
+
+```bash
+docker run -d \
+  --name book-service \
+  -e POSTGRES_PASSWORD=root \
+  -p 5432:5432 \
+  postgres:18.1
+```
+
+You can connect to Postgres using the following command:
+```bash
+psql -h 127.0.0.1 -p 5432 -U postgres -d postgres
+```
+
 ## How to connect to a running Docker container?
 
 ```bash
